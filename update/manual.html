@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>K-Memo — 사용 설명서</title>
+<style>
+  :root {
+    --bg: #f8f9fb; --card: #ffffff; --border: #e2e6ea;
+    --accent: #2962ff; --accent2: #00897b; --red: #ef4444;
+    --text: #1e293b; --text2: #64748b; --text3: #94a3b8;
+    --tag-bg: #eff6ff; --tag: #2962ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .hdr { text-align: center; padding: 48px 0 40px; }
+  .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg,#2962ff,#5c35c8); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; margin: 0 auto 16px; }
+  .hdr h1 { font-size: 30px; font-weight: 800; }
+  .hdr .sub { color: var(--text2); margin-top: 8px; font-size: 14px; }
+  .badge { display: inline-block; background: var(--tag-bg); color: var(--tag); font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 36px; }
+  .toc h3 { font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin: 4px 0; }
+  .toc a { color: var(--accent); text-decoration: none; font-size: 14px; }
+
+  .section { margin-bottom: 48px; }
+  .section-hdr { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-num { width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+  .section h2 { font-size: 20px; font-weight: 800; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  p { margin-bottom: 10px; font-size: 14px; }
+  ul, ol { padding-left: 20px; margin-bottom: 10px; }
+  li { margin: 5px 0; font-size: 14px; }
+  .tip  { background: #eff6ff; border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #1e40af; margin: 12px 0; }
+  .warn { background: #fff7ed; border-left: 3px solid #f97316; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #9a3412; margin: 12px 0; }
+  .new  { background: #ecfdf5; border-left: 3px solid #10b981; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #065f46; margin: 12px 0; }
+  kbd { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 1px 7px; font-family: monospace; font-size: 12px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  footer { text-align: center; font-size: 12px; color: var(--text3); padding-top: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="logo-icon">📝</div>
+    <h1>K-Memo <span class="badge">v1.0.0</span></h1>
+    <div class="sub">PC 메모 프로그램 사용 설명서</div>
+  </div>
+
+  <div class="toc">
+    <h3>목차</h3>
+    <ol>
+      <li><a href="#install">설치 및 라이선스 인증</a></li>
+      <li><a href="#layout">화면 구성</a></li>
+      <li><a href="#memo">메모 작성 및 관리</a></li>
+      <li><a href="#basic">기본 탭 — 오늘 할 일</a></li>
+      <li><a href="#schedule">스케줄 탭</a></li>
+      <li><a href="#fav">즐겨찾기 탭</a></li>
+      <li><a href="#folder">폴더 및 메모 관리</a></li>
+      <li><a href="#settings">설정</a></li>
+      <li><a href="#backup">백업 / 복원</a></li>
+      <li><a href="#security">보안 — 폴더 잠금 & 이메일 복구</a></li>
+      <li><a href="#update">업데이트</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. 설치 -->
+  <div class="section" id="install">
+    <div class="section-hdr">
+      <div class="section-num">1</div>
+      <h2>설치 및 라이선스 인증</h2>
+    </div>
+    <div class="card">
+      <h3>설치</h3>
+      <ol>
+        <li><b>K-Memo Setup 1.0.0.exe</b> 다운로드 후 실행</li>
+        <li>Windows 보안 경고 → "추가 정보" → "그래도 실행" 클릭</li>
+        <li>설치 완료 후 K-Memo 실행</li>
+      </ol>
+      <div class="tip">포터블 버전(K-Memo-1.0.0-portable.exe)은 설치 없이 바로 실행 가능합니다.</div>
+    </div>
+    <div class="card">
+      <h3>라이선스 인증</h3>
+      <ol>
+        <li>첫 실행 시 라이선스 키 입력 화면이 표시됩니다</li>
+        <li>발급받은 키(<kbd>KMEMO-XXXX-XXXX-XXXX</kbd> 형식) 입력</li>
+        <li>인증 완료 후 앱이 시작됩니다</li>
+      </ol>
+      <div class="warn">라이선스 키는 PC 1대에만 등록됩니다. 다른 PC에서 사용하려면 별도 키가 필요합니다.</div>
+    </div>
+  </div>
+
+  <!-- 2. 화면 구성 -->
+  <div class="section" id="layout">
+    <div class="section-hdr">
+      <div class="section-num">2</div>
+      <h2>화면 구성</h2>
+    </div>
+    <div class="card">
+      <p>화면 오른쪽(또는 왼쪽)에 사이드바가 고정되어 표시됩니다.</p>
+      <ul>
+        <li><b>상단 버튼</b>: 새 메모(＋), 메모 관리(📋), 백업(🔄), 설정(⚙)</li>
+        <li><b>탭 바</b>: 📝 메모 · 🕐 기본 · 📅 스케줄 · ⭐ 즐겨찾기</li>
+        <li><b>메모 목록</b>: 폴더별로 분류된 메모 목록</li>
+      </ul>
+      <div class="tip">사이드바 위치(좌/우), 테마는 설정에서 변경할 수 있습니다.</div>
+    </div>
+  </div>
+
+  <!-- 3. 메모 -->
+  <div class="section" id="memo">
+    <div class="section-hdr">
+      <div class="section-num">3</div>
+      <h2>메모 작성 및 관리</h2>
+    </div>
+    <div class="card">
+      <h3>새 메모 작성</h3>
+      <ul>
+        <li>상단 <kbd>＋</kbd> 버튼 클릭 → 화면에 새 메모 창 표시</li>
+        <li>제목과 내용 입력 후 자동 저장</li>
+        <li>메모 창은 항상 최상위에 표시되어 작업 중에도 확인 가능</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>메모 우클릭 메뉴</h3>
+      <p>메모 목록에서 항목을 우클릭하면:</p>
+      <ul>
+        <li><b>열기</b> — 메모 창 열기</li>
+        <li><b>즐겨찾기 추가/해제</b> — 별표(⭐) 표시</li>
+        <li><b>삭제</b> — 메모 삭제</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>폴더 분류</h3>
+      <ul>
+        <li>메모 관리(📋)에서 폴더 추가/편집/이동 가능</li>
+        <li>폴더에 비밀번호 설정 가능 (보안 기능)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4. 기본 탭 -->
+  <div class="section" id="basic">
+    <div class="section-hdr">
+      <div class="section-num">4</div>
+      <h2>기본 탭 — 오늘 할 일</h2>
+    </div>
+    <div class="card">
+      <p>🕐 탭에서 오늘 날짜/요일과 함께 간단한 메모를 작성할 수 있습니다.</p>
+      <ul>
+        <li>날짜/요일은 매일 자동으로 오늘 날짜로 표시</li>
+        <li>메모 내용은 자동으로 저장되며 직접 지우기 전까지 유지</li>
+        <li>당일 스케줄이 있으면 상단에 함께 표시</li>
+      </ul>
+      <div class="new">내용은 날짜가 바뀌어도 사라지지 않아요. 직접 지워야 초기화됩니다.</div>
+    </div>
+  </div>
+
+  <!-- 5. 스케줄 -->
+  <div class="section" id="schedule">
+    <div class="section-hdr">
+      <div class="section-num">5</div>
+      <h2>스케줄 탭</h2>
+    </div>
+    <div class="card">
+      <ul>
+        <li><b>+ 추가</b> 버튼으로 날짜/시간/제목 입력</li>
+        <li>알람 설정 시 해당 시간에 알림 표시</li>
+        <li>D-Day 설정 가능 (중요 날짜 카운트다운)</li>
+        <li>완료된 일정은 취소선 처리, 목록 하단으로 이동</li>
+        <li>기본 탭에서 오늘 스케줄이 자동 표시</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 6. 즐겨찾기 -->
+  <div class="section" id="fav">
+    <div class="section-hdr">
+      <div class="section-num">6</div>
+      <h2>즐겨찾기 탭</h2>
+    </div>
+    <div class="card">
+      <ul>
+        <li>메모 우클릭 → 즐겨찾기 추가 시 ⭐ 탭에 모여서 표시</li>
+        <li>즐겨찾기 탭에서도 우클릭 → 즐겨찾기 해제 / 열기 / 삭제 가능</li>
+      </ul>
+      <div class="new">즐겨찾기 탭에서도 우클릭 메뉴가 지원됩니다. (v1.0.0 추가)</div>
+    </div>
+  </div>
+
+  <!-- 7. 메모 관리 -->
+  <div class="section" id="folder">
+    <div class="section-hdr">
+      <div class="section-num">7</div>
+      <h2>폴더 및 메모 관리</h2>
+    </div>
+    <div class="card">
+      <p>상단 📋 버튼으로 메모 관리 화면 진입:</p>
+      <ul>
+        <li>여러 메모 선택 후 일괄 삭제 / 폴더 이동</li>
+        <li>+ 폴더 버튼으로 새 폴더 추가</li>
+        <li>폴더 편집으로 이름 변경 / 비밀번호 설정</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 8. 설정 -->
+  <div class="section" id="settings">
+    <div class="section-hdr">
+      <div class="section-num">8</div>
+      <h2>설정</h2>
+    </div>
+    <div class="card">
+      <h3>시작 / 실행</h3>
+      <ul>
+        <li><b>시작 프로그램</b> — Windows 부팅 시 자동 실행</li>
+        <li><b>시작 시 사이드바 표시</b> — 앱 시작 시 사이드바 자동 열기</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>자동 백업</h3>
+      <ul>
+        <li>매일 설정한 시간에 자동으로 메모 데이터 백업</li>
+        <li>최근 30일치 보관</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>단축키</h3>
+      <ul>
+        <li>사이드바 표시/숨기기 단축키 직접 설정 가능</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>테마 / 폰트</h3>
+      <ul>
+        <li>다크/라이트/블랙 등 테마 선택</li>
+        <li>메모 폰트 크기 조절</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 9. 백업 -->
+  <div class="section" id="backup">
+    <div class="section-hdr">
+      <div class="section-num">9</div>
+      <h2>백업 / 복원</h2>
+    </div>
+    <div class="card">
+      <ul>
+        <li>상단 🔄 버튼 → 수동 백업 / 복원</li>
+        <li>백업 파일 열기로 저장 위치 확인</li>
+        <li>복원 시 현재 데이터가 백업 시점으로 되돌아감</li>
+      </ul>
+      <div class="warn">복원하면 현재 작성한 내용이 사라집니다. 중요한 내용은 먼저 백업하세요.</div>
+    </div>
+  </div>
+
+  <!-- 10. 보안 -->
+  <div class="section" id="security">
+    <div class="section-hdr">
+      <div class="section-num">10</div>
+      <h2>보안 — 폴더 잠금 & 이메일 복구</h2>
+    </div>
+    <div class="card">
+      <h3>폴더 잠금</h3>
+      <ul>
+        <li>설정 → 보안 탭에서 폴더에 비밀번호 설정 가능</li>
+        <li>잠긴 폴더는 비밀번호 입력 전까지 내용 숨김</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>이메일 복구</h3>
+      <ul>
+        <li>비밀번호를 잊었을 때 이메일로 임시 코드 발송</li>
+        <li>설정 → 보안 → 이메일 복구 설정에서 Gmail 등록 필요</li>
+        <li>Gmail 앱 비밀번호 생성 방법은 화면 내 안내 참고</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 11. 업데이트 -->
+  <div class="section" id="update">
+    <div class="section-hdr">
+      <div class="section-num">11</div>
+      <h2>업데이트</h2>
+    </div>
+    <div class="card">
+      <h3>설치형 (자동 업데이트)</h3>
+      <ul>
+        <li>새 버전 출시 시 앱 내 배너 자동 표시</li>
+        <li>"클릭하여 재시작" → 자동 설치 완료</li>
+      </ul>
+      <h3 style="margin-top:14px;">포터블 (수동 업데이트)</h3>
+      <ul>
+        <li>새 버전 있으면 "새 버전 vX.X.X — 클릭하여 다운로드" 배너 표시</li>
+        <li>배너 클릭 → 다운로드 페이지 이동</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>K-Memo v1.0.0 · by Kris</footer>
+</div>
+</body>
+</html>
