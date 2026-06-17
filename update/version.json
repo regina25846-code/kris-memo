@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "date": "2026-06-17",
+  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.0.0/K-Memo-Setup-1.0.0.exe",
+  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.0.0/K-Memo-1.0.0-portable.exe",
+  "page": "https://regina25846-code.github.io/kris-memo/update/",
+  "changelog": "최초 릴리즈 — 메모/즐겨찾기/달력/오늘할일/라이선스 인증/자동업데이트/트레이 메뉴"
+}
