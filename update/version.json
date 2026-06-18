@@ -1,8 +1,8 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "date": "2026-06-18",
-  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.1.0/K-Memo-Setup-1.1.0.exe",
-  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.1.0/K-Memo-1.1.0-portable.exe",
+  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.1.1/K-Memo-Setup-1.1.1.exe",
+  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.1.1/K-Memo-1.1.1-portable.exe",
   "page": "https://regina25846-code.github.io/kris-memo/update/",
-  "changelog": "포터블 버전 백업 경로 수정, Gmail 앱 비밀번호 연결 테스트, 이메일 복구 설정 개선"
+  "changelog": "사이드바 항상 위 옵션 추가, ZIP 압축 배포 방식 추가"
 }
