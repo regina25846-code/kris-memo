@@ -1,0 +1,61 @@
+{
+  "name": "kris-memo",
+  "version": "1.2.1",
+  "description": "K-Memo - PC 메모 프로그램",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64",
+    "build:mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.kris.memo",
+    "productName": "K-Memo",
+    "asar": false,
+    "publish": {
+      "provider": "github",
+      "owner": "regina25846-code",
+      "repo": "kris-memo"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "installerSidebar": false
+    },
+    "portable": {
+      "artifactName": "K-Memo-${version}-portable.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.0.0",
+    "svg2img": "^1.0.0-beta.2"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9",
+    "nodemailer": "^9.0.0"
+  }
+}
