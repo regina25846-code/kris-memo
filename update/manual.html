@@ -42,6 +42,7 @@
   kbd { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 1px 7px; font-family: monospace; font-size: 12px; }
   .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
   footer { text-align: center; font-size: 12px; color: var(--text3); padding-top: 24px; }
+  .new2 { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #14532d; margin: 12px 0; }
 </style>
 </head>
 <body>
@@ -49,7 +50,7 @@
 
   <div class="hdr">
     <div class="logo-icon">📝</div>
-    <h1>K-Memo <span class="badge">v1.0.0</span></h1>
+    <h1>K-Memo <span class="badge">v1.2.1</span></h1>
     <div class="sub">PC 메모 프로그램 사용 설명서</div>
   </div>
 
@@ -160,6 +161,15 @@
       </ul>
       <div class="new">내용은 날짜가 바뀌어도 사라지지 않아요. 직접 지워야 초기화됩니다.</div>
     </div>
+    <div class="card">
+      <h3>할 것 영역 색상 지정</h3>
+      <ul>
+        <li>우클릭 → 색상 지정으로 배경색/글자색 직접 설정 가능</li>
+        <li>스포이드(🖱) 버튼으로 모니터 전체 화면에서 색상 추출 지원</li>
+        <li>"자동" 버튼으로 배경색에 맞는 글자색 자동 설정</li>
+      </ul>
+      <div class="new2">v1.2.1 — 스포이드 도구가 앱 창 밖 전체 모니터 영역에서 색상 추출을 지원합니다.</div>
+    </div>
   </div>
 
   <!-- 5. 스케줄 -->
@@ -172,10 +182,13 @@
       <ul>
         <li><b>+ 추가</b> 버튼으로 날짜/시간/제목 입력</li>
         <li>알람 설정 시 해당 시간에 알림 표시</li>
+        <li><b>하루 종일</b> 일정은 한국시간 오전 9시를 기준으로 알림 — 예: "10분 전" 설정 시 오전 8:50에 알림</li>
         <li>D-Day 설정 가능 (중요 날짜 카운트다운)</li>
         <li>완료된 일정은 취소선 처리, 목록 하단으로 이동</li>
         <li>기본 탭에서 오늘 스케줄이 자동 표시</li>
+        <li>달력에서 오늘 날짜는 동그라미로, 일정 있는 날은 밑줄로 표시</li>
       </ul>
+      <div class="new2">v1.2.1 — 하루 종일 일정의 알림 기준 시간이 오전 9시(KST)로 통일되었습니다.</div>
     </div>
   </div>
 
@@ -206,7 +219,9 @@
         <li>여러 메모 선택 후 일괄 삭제 / 폴더 이동</li>
         <li>+ 폴더 버튼으로 새 폴더 추가</li>
         <li>폴더 편집으로 이름 변경 / 비밀번호 설정</li>
+        <li><b>하위 폴더</b> — 폴더 우클릭 → "하위 폴더 추가"로 계층 구조 구성 가능</li>
       </ul>
+      <div class="new2">v1.2.1 — 하위 폴더 기능이 추가되었습니다. 폴더를 우클릭하면 하위 폴더를 추가할 수 있습니다.</div>
     </div>
   </div>
 
@@ -239,8 +254,17 @@
     <div class="card">
       <h3>테마 / 폰트</h3>
       <ul>
-        <li>다크/라이트/블랙 등 테마 선택</li>
+        <li><b>Fluent · VSCode · Paper · Frost</b> 4종 테마 선택 — 클릭 즉시 실시간 미리보기</li>
         <li>메모 폰트 크기 조절</li>
+      </ul>
+      <div class="new2">v1.2.1 — 테마 선택 시 저장 전 실시간으로 사이드바에 미리보기가 적용됩니다.</div>
+    </div>
+    <div class="card">
+      <h3>사이드바</h3>
+      <ul>
+        <li>환경설정 → 사이드바 탭에서 위치(좌/우), 자동 숨기기, 항상 위 등 통합 관리</li>
+        <li><b>항상 위</b> 옵션: 사이드바가 다른 창 위에 항상 표시</li>
+        <li><b>자동 숨기기</b> 옵션: 포커스를 잃으면 사이드바 자동 숨김</li>
       </ul>
     </div>
   </div>
@@ -304,7 +328,7 @@
     </div>
   </div>
 
-  <footer>K-Memo v1.0.0 · by Kris</footer>
+  <footer>K-Memo v1.2.1 · by Kris</footer>
 </div>
 </body>
 </html>
