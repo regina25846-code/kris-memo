@@ -1163,10 +1163,10 @@ let whatsNewWin = null;
 function openWhatsNewWindow() {
   if (whatsNewWin && !whatsNewWin.isDestroyed()) { whatsNewWin.focus(); return; }
   whatsNewWin = new BrowserWindow({
-    width: 410, height: 620,
+    width: 460, height: 900,
     frame: false, resizable: false,
     alwaysOnTop: true, skipTaskbar: false,
-    transparent: true,
+    transparent: true, hasShadow: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true, nodeIntegration: false,
@@ -1191,6 +1191,12 @@ ipcMain.handle('close-whats-new', () => {
   cfg.lastSeenVersion = app.getVersion();
   saveConfig(cfg);
   if (whatsNewWin && !whatsNewWin.isDestroyed()) whatsNewWin.close();
+});
+
+ipcMain.handle('resize-whats-new', (_, w, h) => {
+  if (whatsNewWin && !whatsNewWin.isDestroyed()) {
+    whatsNewWin.setSize(Math.round(w), Math.round(h));
+  }
 });
 
 // ── App lifecycle ─────────────────────────────────────────────────────────────
