@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width:220px; height:256px;
+  overflow:hidden;
+  user-select:none;
+  background:#1a1a1a;
+  border-radius:8px;
+}
+#loupe-canvas {
+  display:block;
+  width:220px; height:176px;
+  image-rendering:pixelated;
+  cursor:crosshair;
+}
+#crosshair {
+  position:absolute;
+  top:88px; left:110px;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+#info {
+  background:#111;
+  padding:8px 10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border-top:1px solid #333;
+}
+#swatch {
+  width:22px; height:22px;
+  border-radius:4px;
+  border:1px solid #444;
+  flex-shrink:0;
+}
+#hex { font:700 14px/1 Consolas,monospace; color:#f0f0f0; }
+#rgb { font:11px/1 Consolas,monospace; color:#888; margin-top:3px; }
+#hint {
+  text-align:center;
+  padding:7px 0 6px;
+  font:11px '맑은 고딕',sans-serif;
+  color:#666;
+  border-top:1px solid #222;
+}
+#done-overlay {
+  display:none;
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.85);
+  border-radius:8px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+#done-overlay.show { display:flex; }
+#done-check { font-size:28px; }
+#done-text { font:700 13px '맑은 고딕',sans-serif; color:#7cb87a; }
+#done-hex { font:12px Consolas,monospace; color:#aaa; }
+</style>
+</head>
+<body>
+<div style="position:relative">
+  <canvas id="loupe-canvas" width="220" height="176"></canvas>
+  <svg id="crosshair" width="22" height="22" viewBox="0 0 22 22">
+    <line x1="11" y1="2" x2="11" y2="20" stroke="rgba(0,0,0,0.7)" stroke-width="2"/>
+    <line x1="2" y1="11" x2="20" y2="11" stroke="rgba(0,0,0,0.7)" stroke-width="2"/>
+    <line x1="11" y1="2" x2="11" y2="20" stroke="white" stroke-width="1"/>
+    <line x1="2" y1="11" x2="20" y2="11" stroke="white" stroke-width="1"/>
+    <circle cx="11" cy="11" r="3.5" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="1.5"/>
+    <circle cx="11" cy="11" r="3.5" fill="none" stroke="white" stroke-width="0.8"/>
+  </svg>
+</div>
+<div id="info">
+  <div id="swatch"></div>
+  <div>
+    <div id="hex">#------</div>
+    <div id="rgb">RGB(-, -, -)</div>
+  </div>
+</div>
+<div id="hint">클릭 — 복사 &nbsp;|&nbsp; ESC — 취소</div>
+
+<div id="done-overlay">
+  <div id="done-check">✓</div>
+  <div id="done-text">색상이 복사되었습니다</div>
+  <div id="done-hex"></div>
+</div>
+
+<script>
+const loupeCV  = document.getElementById('loupe-canvas');
+const loupeCtx = loupeCV.getContext('2d');
+const swatch   = document.getElementById('swatch');
+const hexEl    = document.getElementById('hex');
+const rgbEl    = document.getElementById('rgb');
+const doneOvl  = document.getElementById('done-overlay');
+const doneHex  = document.getElementById('done-hex');
+
+const LOUPE_W  = 220, LOUPE_H = 176;
+const ZOOM     = 13;
+const SAMPLE   = Math.round(LOUPE_W / ZOOM); // ~17px shown
+
+const hidden    = document.createElement('canvas');
+const hiddenCtx = hidden.getContext('2d');
+let imgReady    = false;
+let lastHex     = '#000000';
+let lastX = 0, lastY = 0;
+let closing = false;
+
+const img = new Image();
+img.onload = () => {
+  hidden.width  = img.naturalWidth;
+  hidden.height = img.naturalHeight;
+  hiddenCtx.drawImage(img, 0, 0);
+  imgReady = true;
+  render();
+};
+
+window.api.on('colorpick-data', (b64) => { if (b64) img.src = b64; });
+
+window.api.on('cursor-pos', (x, y) => {
+  lastX = x; lastY = y;
+  render();
+});
+
+function render() {
+  if (!imgReady) return;
+  const sx   = lastX;
+  const sy   = lastY;
+  const half = Math.floor(SAMPLE / 2);
+
+  loupeCtx.clearRect(0, 0, LOUPE_W, LOUPE_H);
+  loupeCtx.imageSmoothingEnabled = false;
+  loupeCtx.drawImage(hidden, sx - half, sy - half, SAMPLE, SAMPLE, 0, 0, LOUPE_W, LOUPE_H);
+
+  loupeCtx.strokeStyle = 'rgba(0,0,0,0.15)';
+  loupeCtx.lineWidth = 0.5;
+  for (let i = 1; i < SAMPLE; i++) {
+    const p = i * ZOOM;
+    loupeCtx.beginPath();
+    loupeCtx.moveTo(p, 0); loupeCtx.lineTo(p, LOUPE_H);
+    loupeCtx.moveTo(0, p); loupeCtx.lineTo(LOUPE_W, p);
+    loupeCtx.stroke();
+  }
+
+  const px = hiddenCtx.getImageData(sx, sy, 1, 1).data;
+  const r = px[0], g = px[1], b = px[2];
+  lastHex = '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+  swatch.style.background = lastHex;
+  hexEl.textContent = lastHex.toUpperCase();
+  rgbEl.textContent = `RGB(${r}, ${g}, ${b})`;
+}
+
+document.addEventListener('click', () => {
+  if (closing) return;
+  closing = true;
+  doneHex.textContent = lastHex.toUpperCase();
+  doneOvl.classList.add('show');
+  setTimeout(() => window.api.colorPickClose(lastHex), 700);
+});
+</script>
+</body>
+</html>
