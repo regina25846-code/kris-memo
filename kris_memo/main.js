@@ -838,8 +838,10 @@ ipcMain.handle('colorpick-start', async (_, todoTarget = null) => {
   if (todoTarget && todoColorPickWin && !todoColorPickWin.isDestroyed()) todoColorPickWin.hide();
   const { width, height } = screen.getPrimaryDisplay().size;
 
-  colorPickSidebarWasVisible = sidebarWin?.isVisible() ?? false;
-  sidebarWin?.hide();
+  if (!todoTarget) {
+    colorPickSidebarWasVisible = sidebarWin?.isVisible() ?? false;
+    sidebarWin?.hide();
+  }
   tabWin?.hide();
   await new Promise(r => setTimeout(r, 180));
 
