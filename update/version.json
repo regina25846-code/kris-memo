@@ -1,8 +1,8 @@
 {
-  "version": "1.1.1",
-  "date": "2026-06-18",
-  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.1.1/K-Memo-Setup-1.1.1.exe",
-  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.1.1/K-Memo-1.1.1-portable.exe",
+  "version": "1.2.1",
+  "date": "2026-06-21",
+  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.2.1/K-Memo-Setup-1.2.1.exe",
+  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.2.1/K-Memo-1.2.1-portable.exe",
   "page": "https://regina25846-code.github.io/kris-memo/update/",
-  "changelog": "사이드바 항상 위 옵션 추가, ZIP 압축 배포 방식 추가"
+  "changelog": "테마 실시간 미리보기, 하루 종일 알림 오전 9시 기준, 할 것 스포이드 전체 화면 지원"
 }
