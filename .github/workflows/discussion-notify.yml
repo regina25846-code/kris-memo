@@ -21,19 +21,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCUSSION_ID: ${{ github.event.discussion.node_id }}
         run: |
-          BODY=$(cat << 'MSGEOF'
-안녕하세요! 버그 신고 접수되었습니다. 🙏
-
-내용 검토 후 순차적으로 처리하겠습니다.
-추가 정보가 필요하면 다시 안내드릴게요.
-
-— K-Memo 팀
-MSGEOF
-)
-          gh api graphql -f query='
-            mutation($id: ID!, $body: String!) {
-              addDiscussionComment(input: {discussionId: $id, body: $body}) {
-                comment { id }
-              }
-            }
-          ' -f id="$DISCUSSION_ID" -f body="$BODY"
+          python3 -c '
+import os, json, urllib.request
+token = os.environ["GH_TOKEN"]
+did = os.environ["DISCUSSION_ID"]
+body = "안녕하세요! 버그 신고 접수되었습니다. 🙏\n\n내용 검토 후 순차적으로 처리하겠습니다.\n추가 정보가 필요하면 다시 안내드릴게요.\n\n— K-Memo 팀"
+q = json.dumps({"query": "mutation($id:ID!,$body:String!){addDiscussionComment(input:{discussionId:$id,body:$body}){comment{id}}}", "variables": {"id": did, "body": body}}).encode()
+r = urllib.request.Request("https://api.github.com/graphql", q, {"Authorization": "bearer "+token, "Content-Type": "application/json"})
+print(json.loads(urllib.request.urlopen(r).read()))
+'
