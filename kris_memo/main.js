@@ -583,6 +583,7 @@ function createTray() {
     { label: '환경설정', click: () => openSettingsWindow() },
     { type: 'separator' },
     { label: '설명서 보기', click: () => shell.openExternal('https://regina25846-code.github.io/kris-memo/update/manual.html') },
+    { label: '건의사항', click: () => shell.openExternal('https://github.com/regina25846-code/kris-memo/discussions') },
     { type: 'separator' },
     { label: '프로그램 정보', click: () => {
       dialog.showMessageBox({ type: 'info', title: 'K-Memo', message: `K-Memo v${app.getVersion()}\n\nPC 메모 프로그램\nby Kris (with Team Melona)` });
