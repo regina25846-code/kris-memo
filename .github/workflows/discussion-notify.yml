@@ -1,0 +1,16 @@
+name: 건의사항 텔레그램 알림
+
+on:
+  discussion:
+    types: [created]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 텔레그램 알림 전송
+        run: |
+          TEXT="📋 새 건의사항이 올라왔어요!%0A%0A제목: ${{ github.event.discussion.title }}%0A작성자: ${{ github.event.discussion.user.login }}%0A%0A${{ github.event.discussion.html_url }}"
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d "text=${TEXT}"
