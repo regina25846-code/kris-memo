@@ -17,12 +17,20 @@ jobs:
             -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
             -d "text=${TEXT}"
 
-      - name: 접수 확인 답글 등록
+ - name: 접수 확인 답글 등록
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCUSSION_ID: ${{ github.event.discussion.node_id }}
         run: |
-          BODY="안녕하세요! 버그 신고 접수되었습니다. 🙏\n\n내용 검토 후 순차적으로 처리하겠습니다.\n추가 정보가 필요하면 다시 안내드릴게요.\n\n— K-Memo 팀"
+          BODY=$(cat << 'EOF'
+안녕하세요! 버그 신고 접수되었습니다. 🙏
+
+내용 검토 후 순차적으로 처리하겠습니다.
+추가 정보가 필요하면 다시 안내드릴게요.
+
+— K-Memo 팀
+EOF
+)
           gh api graphql -f query='
             mutation($id: ID!, $body: String!) {
               addDiscussionComment(input: {discussionId: $id, body: $body}) {
