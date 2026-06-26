@@ -53,6 +53,9 @@
   details.ver-item summary .ver-date { font-size: 12px; color: var(--text3); }
   details.ver-item summary .ver-arrow { font-size: 11px; color: var(--text3); transition: transform 0.2s; }
   details.ver-item[open] summary .ver-arrow { transform: rotate(180deg); }
+  details.ver-item summary .txt-close { display: none; }
+  details.ver-item[open] summary .txt-open { display: none; }
+  details.ver-item[open] summary .txt-close { display: inline; }
   details.ver-item .ver-body { padding: 0 20px 16px; border-top: 1px solid var(--border); margin-top: 0; }
   details.ver-item .ver-body ul { padding-left: 18px; margin-top: 8px; margin-bottom: 0; }
   details.ver-item .ver-body li { font-size: 14px; color: var(--text2); margin: 5px 0; line-height: 1.6; }
@@ -363,7 +366,7 @@
     </div>
     <details class="ver-item">
       <summary>
-        <span class="ver-title">버전별 업데이트 내역</span>
+        <span class="ver-title">버전별 업데이트 내역 <span class="txt-open">펼쳐보기</span><span class="txt-close">접기</span></span>
         <span class="ver-arrow">▼</span>
       </summary>
       <div class="ver-body">
