@@ -38,6 +38,13 @@
   .changelog ul { padding-left: 18px; }
   .changelog li { font-size: 14px; color: var(--text2); line-height: 1.7; }
 
+
+  .history-section { margin-top: 20px; }
+  details.history-wrap > summary { cursor: pointer; list-style: none; padding: 12px 16px; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; display: flex; justify-content: space-between; }
+  details.history-wrap > summary::-webkit-details-marker { display: none; }
+  details.history-wrap > summary:hover { background: var(--bg2); }
+  details.history-wrap[open] > summary { border-radius: 8px 8px 0 0; border-bottom: none; }
+  details.history-wrap .history-body { border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; padding: 16px 18px; }
   .note { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 13px; color: var(--text2); line-height: 1.7; }
   .note strong { color: var(--text); }
 
@@ -72,6 +79,14 @@
       </a>
     </div>
     <div class="changelog">
+      <div class="changelog-title">v1.2.5 (2026-07-01)</div>
+      <ul>
+        <li>다중 실행 방지 — 이미 실행 중이면 기존 창 포커스</li>
+      </ul>
+      <div class="history-section">
+      <details class="history-wrap">
+        <summary>이전 버전 내역 <span>▼</span></summary>
+        <div class="history-body">
       <div class="changelog-title">v1.2.4 (2026-06-26)</div>
       <ul>
         <li>우클릭 메뉴 하단 잘림 수정</li>
@@ -120,6 +135,9 @@
         <li>시스템 트레이 — 백업/복원/환경설정/프로그램정보/종료</li>
         <li>백업·복원 기능 (JSON 파일로 메모 내보내기/가져오기)</li>
       </ul>
+        </div><!-- history-body -->
+      </details>
+      </div><!-- history-section -->
     </div>
   </div>
 
