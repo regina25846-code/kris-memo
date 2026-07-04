@@ -1,8 +1,8 @@
 {
-  "version": "1.2.9",
-  "date": "2026-07-04",
-  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.2.9/K-Memo.Setup.1.2.9.exe",
-  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.2.9/K-Memo-1.2.9-portable.exe",
+  "version": "1.3.0",
+  "date": "2026-07-05",
+  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.0/K-Memo.Setup.1.3.0.exe",
+  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.0/K-Memo-1.3.0-portable.exe",
   "page": "https://regina25846-code.github.io/kris-memo/update/",
-  "changelog": "스케줄 NS 드럼 UI, 중요도 색상, 알람 옵션 추가, 테마 반영 개선, 폰트 크기 옵션 확장"
+  "changelog": "일정 알람/반복 패널 자동 닫기, 사이드바 설정 창 높이 조정, 환경설정 테마 실시간 연동, 일정 기본 중요도 보통(노랑)으로 수정"
 }
