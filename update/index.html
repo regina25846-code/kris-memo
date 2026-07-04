@@ -22,23 +22,43 @@
 
   .container { max-width: 720px; margin: 0 auto; padding: 40px 24px; }
 
-  .version-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; }
+  /* 최신 버전 카드 */
+  .latest-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 28px; }
   .ver-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
   .ver-badge { background: var(--accent); color: #fff; font-size: 20px; font-weight: 800; padding: 6px 18px; border-radius: 20px; }
   .ver-date { color: var(--text3); font-size: 14px; }
 
   .dl-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-  .dl-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 8px; }
+  .dl-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 8px; transition: opacity 0.15s; }
   .dl-btn.portable { background: #37474f; }
-  .dl-btn.zip { background: #5c6bc0; }
   .dl-btn:hover { opacity: 0.88; }
 
-  .changelog { border-top: 1px solid var(--border); padding-top: 18px; }
-  .changelog-title { font-size: 13px; font-weight: 700; color: var(--text3); margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
-  .changelog ul { padding-left: 18px; }
-  .changelog li { font-size: 14px; color: var(--text2); line-height: 1.7; }
+  .latest-changelog { border-top: 1px solid var(--border); padding-top: 18px; }
+  .latest-changelog ul { padding-left: 18px; }
+  .latest-changelog li { font-size: 14px; color: var(--text2); line-height: 1.7; }
 
-  .note { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+  /* 이전 버전 아코디언 */
+  .history-label { font-size: 12px; font-weight: 700; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+
+  .acc-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; cursor: pointer; user-select: none;
+    transition: background 0.12s;
+  }
+  .acc-header:hover { background: var(--bg3); }
+  .acc-header-left { display: flex; align-items: center; gap: 12px; }
+  .acc-ver { font-size: 14px; font-weight: 700; color: var(--text); }
+  .acc-date { font-size: 12px; color: var(--text3); }
+  .acc-arrow { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-item.open .acc-arrow { transform: rotate(180deg); }
+
+  .acc-body { display: none; padding: 0 18px 16px; border-top: 1px solid var(--border); }
+  .acc-item.open .acc-body { display: block; }
+  .acc-body ul { padding-left: 18px; margin-top: 12px; }
+  .acc-body li { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  .note { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 13px; color: var(--text2); line-height: 1.7; margin-top: 28px; }
   .note strong { color: var(--text); }
 
   footer { text-align: center; font-size: 12px; color: var(--text3); padding: 40px 0 24px; }
@@ -55,113 +75,176 @@
 </div>
 
 <div class="container">
-  <div class="version-card">
+
+  <!-- 최신 버전 -->
+  <div class="latest-card">
     <div class="ver-row">
       <span class="ver-badge">v1.3.2</span>
       <span class="ver-date">2026-07-05</span>
     </div>
     <div class="dl-btns">
-      <a class="dl-btn" href="https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo.Setup.1.3.2.exe">
-        ⬇ 설치형 다운로드
-      </a>
-      <a class="dl-btn portable" href="https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo-1.3.2-portable.exe">
-        ⬇ 포터블 다운로드
-      </a>
+      <a class="dl-btn" href="https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo.Setup.1.3.2.exe">⬇ 설치형 다운로드</a>
+      <a class="dl-btn portable" href="https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo-1.3.2-portable.exe">⬇ 포터블 다운로드</a>
     </div>
-    <div class="changelog">
-      <div class="changelog-title">v1.3.2 (2026-07-05)</div>
+    <div class="latest-changelog">
       <ul>
         <li>설치 시 실행 중인 앱 종료 안내 팝업 추가</li>
         <li>라이선스 기기 식별 강화 (하드웨어 UUID)</li>
+        <li>테마 변경 시 환경설정 창 실시간 반영</li>
+        <li>일정 기본 중요도 노랑(보통)으로 변경</li>
+        <li>알람/반복 패널 자동 닫힘, 할 것 폰트 반영</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.3.1 (2026-07-05)</div>
-      <ul>
-        <li>할 것 폰트 변경 반영</li>
-        <li>설치 시 앱 자동 종료 및 설치 완료 후 실행 옵션 추가</li>
-      </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.3.0 (2026-07-05)</div>
-      <ul>
-        <li>일정 알람/반복 패널 자동 닫기 버그 수정</li>
-        <li>사이드바 설정 창 높이 조정</li>
-        <li>환경설정 테마 실시간 연동</li>
-        <li>일정 기본 중요도 보통(노랑)으로 수정</li>
-      </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.9 (2026-07-04)</div>
+    </div>
+  </div>
+
+  <!-- 이전 버전 아코디언 -->
+  <div class="history-label">이전 버전</div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.9</span><span class="acc-date">2026-07-04</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
         <li>스케줄 NS 드럼 UI, 중요도 색상 선택, 알람 옵션 확장</li>
         <li>사이드바/환경설정 테마 반영 개선</li>
         <li>폰트 크기 옵션 확장</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.8 (2026-07-04)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.8</span><span class="acc-date">2026-07-04</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
-        <li>라이선스 인증 안정성 개선 (토큰 만료 문제 해결)</li>
+        <li>라이선스 인증 안정성 개선</li>
         <li>프로그램 정보 다이얼로그 추가</li>
         <li>중복 실행 방지</li>
         <li>사이드바 버그 수정</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.6 (2026-07-02)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.6</span><span class="acc-date">2026-07-02</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
         <li>라벨 항상 위 유지 — 다른 항상 위 창에 가려지지 않도록 수정</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.4 (2026-06-26)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.4</span><span class="acc-date">2026-06-26</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
         <li>우클릭 메뉴 하단 잘림 수정</li>
         <li>보안 폴더 업데이트 팝업 공지 추가</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.3 (2026-06-26)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.3</span><span class="acc-date">2026-06-26</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
         <li>보안 강화 — 잠긴 폴더 메모 히스토리/즐겨찾기 클릭 시 비밀번호 요구</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.2 (2026-06-26)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.2</span><span class="acc-date">2026-06-26</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
-        <li>폰트 설정 추가 — 메모장 / 사이드바 폰트를 별도로 선택 가능 (KoPubWorld Dotum 내장 포함)</li>
-        <li>폰트 크기 조절 — 기본 / 크게+1 / 크게+2 / 크게+3 단계별 크기 선택</li>
-        <li>메모 우클릭 폰트 크기 변경 — 메모 안에서 우클릭 → 폰트 크기 즉시 변경 (전체 메모 적용)</li>
-        <li>폰트 실시간 반영 — 환경설정에서 폰트 변경 시 저장 전에도 즉시 미리보기</li>
+        <li>폰트 설정 추가 — 메모장 / 사이드바 폰트 별도 선택 (KoPubWorld Dotum 내장)</li>
+        <li>폰트 크기 조절 — 기본 / 크게+1 / 크게+2 / 크게+3</li>
+        <li>메모 우클릭 폰트 크기 변경</li>
+        <li>환경설정에서 폰트 변경 즉시 미리보기</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.2.1 (2026-06-21)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.2.1</span><span class="acc-date">2026-06-21</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
-        <li>환경설정 사이드바 탭 추가 — 사이드바 설정을 환경설정 안에서 한번에 관리</li>
-        <li>하위 폴더 기능 추가 — 폴더 우클릭 → 하위 폴더 추가로 계층 구조 구성</li>
-        <li>테마 4종 리뉴얼 (Fluent · VSCode · Paper · Frost) — 선택 즉시 실시간 미리보기</li>
-        <li>UI 전반 디자인 개선 — Pretendard 폰트, 카드형 레이아웃, 모서리 라운드 처리</li>
-        <li>하루 종일 일정 알림 오전 9시 기준 처리 (예: 10분 전 설정 → 8:50 알림)</li>
-        <li>할 것 색상 스포이드 전체 화면 지원 — 앱 밖 전체 모니터에서 색상 추출 가능</li>
-        <li>달력 오늘 날짜 동그라미 표시, 일정 있는 날 밑줄 표시</li>
+        <li>환경설정 사이드바 탭 추가</li>
+        <li>하위 폴더 기능 추가</li>
+        <li>테마 4종 리뉴얼 (Fluent · VSCode · Paper · Frost)</li>
+        <li>UI 전반 디자인 개선</li>
+        <li>하루 종일 일정 알림 오전 9시 기준 처리</li>
+        <li>할 것 색상 스포이드 전체 화면 지원</li>
+        <li>달력 오늘 날짜 동그라미, 일정 있는 날 밑줄 표시</li>
         <li>데이터 경로 안정화 — AppData\Roaming\kris-memo 고정</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.1.1 (2026-06-18)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.1.1</span><span class="acc-date">2026-06-18</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
-        <li>포터블 버전 백업 경로 수정 — EXE 파일 위치에 저장되도록 개선</li>
-        <li>Gmail 앱 비밀번호 저장 시 연결 테스트 후 저장</li>
-        <li>이메일 복구 설정 저장 후 완료 화면 표시</li>
+        <li>포터블 버전 백업 경로 수정</li>
+        <li>Gmail 앱 비밀번호 저장 시 연결 테스트</li>
         <li>폴더 잠금 전 이메일 복구 설정 필수 체크</li>
-        <li>사이드바 항상 위 옵션 추가 (환경설정 → 기본)</li>
+        <li>사이드바 항상 위 옵션 추가</li>
         <li>압축파일(ZIP) 배포 방식 추가</li>
       </ul>
-      <div class="changelog-title" style="margin-top:14px;">v1.0.0 — 최초 릴리즈 (2026-06-17)</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-header-left"><span class="acc-ver">v1.0.0</span><span class="acc-date">2026-06-17</span></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
       <ul>
         <li>기본 메모 기능 (텍스트, 체크리스트)</li>
-        <li>즐겨찾기 탭 — 자주 보는 메모 고정, 우클릭으로 별표 추가/제거</li>
-        <li>달력 탭 — 날짜별 스케줄 등록 및 조회</li>
-        <li>오늘 할 일 메모 — 날짜·요일 자동 표시, 내용은 직접 관리</li>
-        <li>라이선스 키 인증 시스템 (매 실행 시 온라인 검증)</li>
-        <li>자동 업데이트 지원 (설치형 EXE)</li>
-        <li>포터블 업데이트 알림 지원</li>
-        <li>시스템 트레이 — 백업/복원/환경설정/프로그램정보/종료</li>
-        <li>백업·복원 기능 (JSON 파일로 메모 내보내기/가져오기)</li>
+        <li>즐겨찾기 탭, 달력 탭, 오늘 할 일 메모</li>
+        <li>라이선스 키 인증 시스템</li>
+        <li>자동 업데이트 / 포터블 업데이트 알림</li>
+        <li>시스템 트레이, 백업·복원 기능</li>
       </ul>
     </div>
   </div>
 
   <div class="note">
     <strong>설치 안내</strong><br>
-    업데이트 시 현재 열려있는 K-Memo를 먼저 종료하고 설치를 진행해주세요.<br>
     설치형 EXE 실행 시 Windows 보안 경고가 뜰 수 있습니다.<br>
     "추가 정보" → "그래도 실행" 클릭하면 설치됩니다.
   </div>
 </div>
 
 <footer>K-Memo by Kris</footer>
+
+<script>
+function toggle(header) {
+  header.parentElement.classList.toggle('open');
+}
+</script>
 </body>
 </html>
