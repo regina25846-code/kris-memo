@@ -1,8 +1,8 @@
 {
-  "version": "1.3.1",
+  "version": "1.3.2",
   "date": "2026-07-05",
-  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.1/K-Memo.Setup.1.3.1.exe",
-  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.1/K-Memo-1.3.1-portable.exe",
+  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo.Setup.1.3.2.exe",
+  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo-1.3.2-portable.exe",
   "page": "https://regina25846-code.github.io/kris-memo/update/",
-  "changelog": "할 것 폰트 변경 반영, 설치 시 앱 자동 종료 및 설치 완료 후 실행 옵션 추가"
+  "changelog": "설치 시 실행 중 앱 종료 안내 추가, 라이선스 기기 식별 강화"
 }
