@@ -1,8 +1,8 @@
 {
-  "version": "1.3.2",
+  "version": "1.3.3",
   "date": "2026-07-05",
-  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo.Setup.1.3.2.exe",
-  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.2/K-Memo-1.3.2-portable.exe",
+  "installer": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.3/K-Memo.Setup.1.3.3.exe",
+  "portable": "https://github.com/regina25846-code/kris-memo/releases/download/v1.3.3/K-Memo-1.3.3-portable.exe",
   "page": "https://regina25846-code.github.io/kris-memo/update/",
-  "changelog": "설치 시 실행 중 앱 종료 안내 추가, 라이선스 기기 식별 강화"
+  "changelog": "폴더 우클릭 메뉴 복구, 새 메모 제목 자동 포커스, 폰트 +4/+5 추가, 메모 기본 높이 확대"
 }
