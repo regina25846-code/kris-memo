@@ -53,9 +53,6 @@
   details.ver-item summary .ver-date { font-size: 12px; color: var(--text3); }
   details.ver-item summary .ver-arrow { font-size: 11px; color: var(--text3); transition: transform 0.2s; }
   details.ver-item[open] summary .ver-arrow { transform: rotate(180deg); }
-  details.ver-item summary .txt-close { display: none; }
-  details.ver-item[open] summary .txt-open { display: none; }
-  details.ver-item[open] summary .txt-close { display: inline; }
   details.ver-item .ver-body { padding: 0 20px 16px; border-top: 1px solid var(--border); margin-top: 0; }
   details.ver-item .ver-body ul { padding-left: 18px; margin-top: 8px; margin-bottom: 0; }
   details.ver-item .ver-body li { font-size: 14px; color: var(--text2); margin: 5px 0; line-height: 1.6; }
@@ -146,6 +143,14 @@
         <li>상단 <kbd>＋</kbd> 버튼 클릭 → 화면에 새 메모 창 표시</li>
         <li>제목과 내용 입력 후 자동 저장</li>
         <li>메모 창은 항상 최상위에 표시되어 작업 중에도 확인 가능</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>텍스트 서식 (굵게)</h3>
+      <ul>
+        <li>메모 안에서 글자를 드래그로 선택한 뒤 하단 <kbd>B</kbd> 버튼 클릭 → 굵게 표시</li>
+        <li>굵게 표시는 메모를 닫았다 다시 열어도 그대로 유지됨</li>
+        <li>이미 진한 폰트(예: KoPubWorld Bold)를 쓰는 중이어도 <kbd>B</kbd> 버튼을 누르면 더 확실하게 두꺼워 보임</li>
       </ul>
     </div>
     <div class="card">
@@ -366,10 +371,72 @@
     </div>
     <details class="ver-item">
       <summary>
-        <span class="ver-title">버전별 업데이트 내역 <span class="txt-open">펼쳐보기</span><span class="txt-close">접기</span></span>
+        <span class="ver-title">버전별 업데이트 내역</span>
         <span class="ver-arrow">▼</span>
       </summary>
       <div class="ver-body">
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.3.4</span><span class="ver-date">2026-07-12</span></div>
+          <ul>
+            <li>메모 굵게(B) 표시 저장 안 되던 문제 수정 — 이제 닫았다 다시 열어도 굵게 표시 유지</li>
+            <li>진한 폰트에서도 더 확실하게 굵게 보이도록 개선</li>
+          </ul>
+        </div>
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.3.3</span><span class="ver-date">2026-07-05</span></div>
+          <ul>
+            <li>폴더 우클릭 메뉴 복구 — 새 메모 추가·하위 폴더 추가 항목이 빠져있던 문제 수정</li>
+            <li>새 메모 열릴 때 제목 입력란에 바로 커서 이동</li>
+            <li>메모 폰트 크기 크게 +4, +5 추가, 폰트 변경 시 환경설정에도 실시간 반영</li>
+            <li>메모 기본 높이 220 → 280으로 확대</li>
+          </ul>
+        </div>
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.3.2</span><span class="ver-date">2026-07-05</span></div>
+          <ul>
+            <li>사이드바 테마 변경 시 환경설정 창도 즉시 반영</li>
+            <li>새 일정 추가 시 기본 색상이 노랑(보통)으로 설정</li>
+            <li>알람/반복 옵션 선택 후 패널이 자동으로 닫혀 추가 버튼이 가려지던 문제 수정</li>
+            <li>폰트 설정 변경 시 할 것 섹션에도 즉시 반영</li>
+            <li>설치 시 실행 중이면 종료 안내 팝업 표시, 설치 완료 후 앱 바로 실행 옵션 추가</li>
+            <li>하드웨어 기반 기기 식별로 라이선스 키 중복 사용 차단</li>
+          </ul>
+        </div>
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.3.1</span><span class="ver-date">2026-07-05</span></div>
+          <ul>
+            <li>할 것 섹션 폰트 변경 반영</li>
+            <li>설치 시 실행 중인 앱 자동 종료, 설치 완료 후 앱 바로 실행 옵션 추가</li>
+          </ul>
+        </div>
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.3.0</span><span class="ver-date">2026-07-05</span></div>
+          <ul>
+            <li>알람/반복 라디오 선택 시 패널 자동 닫힘</li>
+            <li>사이드바 설정 창 높이 확대(570px)</li>
+            <li>환경설정 창 테마 실시간 연동</li>
+            <li>일정 기본 중요도 색상 노랑(보통)으로 변경</li>
+          </ul>
+        </div>
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.2.9</span><span class="ver-date">2026-07-04</span></div>
+          <ul>
+            <li>스케줄 시간 선택 드럼(휠) 애니메이션 UI 추가</li>
+            <li>일정 중요도 색상 선택(긴급/높음/보통/낮음) 추가</li>
+            <li>알람 옵션에 2일 전, 7일 전, 한달 전 추가</li>
+            <li>사이드바/환경설정 창 테마 색상 반영 범위 확대</li>
+            <li>사이드바·메모 폰트 크게 옵션 단계 확장</li>
+          </ul>
+        </div>
+        <div class="ver-block">
+          <div class="ver-block-hdr"><span class="ver-tag">v1.2.8</span><span class="ver-date">2026-06-26</span></div>
+          <ul>
+            <li>사이드바 설정 버튼 클릭 이벤트 누락으로 반응 없던 문제 수정</li>
+            <li>테마 4종(다크그레이·VS Code·페이퍼·프로스트) 설정창과 K탭 동기화</li>
+            <li>반응 없던 백업 버튼 드롭다운에서 제거</li>
+            <li>백업 불러오기 시 파일 선택 창이 백업 폴더로 바로 열림</li>
+          </ul>
+        </div>
         <div class="ver-block">
           <div class="ver-block-hdr"><span class="ver-tag">v1.2.2</span><span class="ver-date">2026-06-26</span></div>
           <ul>
